@@ -1,0 +1,35 @@
+#!/bin/bash
+
+s=$(gpio input 318)
+s=$(gpio input 346)
+s=$(gpio input 411)
+s=$(gpio input 416)
+s=$(gpio input 344)
+s=$(gpio input 406)
+gpio clear 312	#OE2
+
+gpio set 335
+gpio clear 371
+gpio set 311
+gpio clear 369
+
+sleep 0.5
+QEP1=$(gpio input 423)  #QEP0_A
+QEP2=$(gpio input 346)	#QEP0_B
+QEP3=$(gpio input 416)	#QEP1_A
+QEP4=$(gpio input 411)	#QEP1_B
+
+echo $QEP1,$QEP2,$QEP3,$QEP4
+
+gpio clear 335
+gpio set 371
+gpio clear 311
+gpio set 369
+
+sleep 0.5
+QEP1=$(gpio input 423)  #QEP0_A
+QEP2=$(gpio input 346)  #QEP0_B
+QEP3=$(gpio input 416)  #QEP1_A
+QEP4=$(gpio input 411)  #QEP1_B
+
+echo $QEP1,$QEP2,$QEP3,$QEP4

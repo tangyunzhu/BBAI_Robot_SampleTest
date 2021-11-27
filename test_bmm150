@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "------------------------BMM150-------------------------"
+cd /sys/bus/iio/devices/iio:device0
+echo "device is: " $(cat name)
+magn_sampling_frequency=$(cat in_magn_sampling_frequency)
+magn_scale=$(cat in_magn_scale)
+in_magn_x_oversampling_ratio=$(cat in_magn_x_oversampling_ratio)
+in_magn_x_raw=$(cat in_magn_x_raw)
+in_magn_y_raw=$(cat in_magn_y_raw)
+in_magn_z_raw=$(cat in_magn_z_raw)
+echo "magn_sampling_frequency is: " $magn_sampling_frequency
+echo "magn_scale is: " $magn_scale
+echo "magn_x_raw is: " $in_magn_x_raw
+echo "magn_y_raw is: " $in_magn_y_raw
+echo "magn_z_raw is: " $in_magn_z_raw

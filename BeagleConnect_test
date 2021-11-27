@@ -1,0 +1,12 @@
+#!/bin/bash
+
+rst=326
+
+tty_pairs ttyUSB0,ttyS4
+gpio set $rst
+sleep 1
+gpio clear $rst
+sleep 1
+gpio set $rst
+sleep 1
+gpio clear $rst

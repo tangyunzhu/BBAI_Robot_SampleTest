@@ -1,0 +1,163 @@
+
+#!/bin/bash
+
+#gpio clear 334
+#gpio clear 314
+#gpio clear 320
+#gpio clear 309
+#gpio clear 370
+#gpio clear 368
+#gpio clear 316
+#gpio clear 362
+#gpio clear 304
+#gpio clear 303
+#gpio clear 388
+#gpio clear 366
+
+Motor1_Sleep=320
+Motor1_IN1=334
+Motor1_IN2=314
+Motor2_IN1=309
+Motor2_IN2=370
+Motor2_Disable=368
+Motor3_IN1=316
+Motor3_IN2=362
+Motor3_Disable=304
+Motor4_IN1=303
+Motor4_IN2=388
+Motor4_Disable=366
+
+s=$1
+if [ $s -eq 0 ]; then
+	echo "Motor all off"
+	gpio clear $Motor1_Sleep
+	gpio clear $Motor1_IN1
+	gpio clear $Motor1_IN2
+	gpio clear $Motor2_IN1
+	gpio clear $Motor2_IN2
+	gpio set   $Motor2_Disable
+	gpio clear $Motor3_IN1
+	gpio clear $Motor3_IN2
+	gpio set   $Motor3_Disable
+	gpio clear $Motor4_IN1
+	gpio clear $Motor4_IN2
+	gpio set  $Motor4_Disable
+fi
+
+if [ $s -eq 10 ]; then
+	echo "Motor1 run direction 0"
+	gpio clear $Motor1_Sleep
+	sleep 1
+	gpio set $Motor1_IN1
+	gpio set $Motor1_Sleep
+fi
+
+if [ $s -eq 11 ]; then
+	echo "Motor1 run dirction 1"
+	gpio clear $Motor1_Sleep
+	sleep 1
+	gpio set $Motor1_IN2
+	gpio set $Motor1_Sleep
+fi
+
+if [ $s -eq 20 ]; then
+        echo "Motor2 run direction 0"
+        gpio set $Motor2_Disable
+        sleep 1
+        gpio set $Motor2_IN1
+        gpio clear $Motor2_Disable
+
+fi
+
+if [ $s -eq 21 ]; then
+        echo "Motor2 run direction 1"
+        gpio set $Motor2_Disable
+        sleep 1
+        gpio set $Motor2_IN2
+        gpio clear $Motor2_Disable
+
+fi
+
+
+if [ $s -eq 30 ]; then
+        echo "Motor3 run direction 0"
+        gpio set $Motor3_Disable
+        sleep 1
+        gpio set $Motor3_IN1
+        gpio clear $Motor3_Disable
+
+fi
+
+if [ $s -eq 31 ]; then
+        echo "Motor3 run direction 1"
+        gpio set $Motor3_Disable
+        sleep 1
+        gpio set $Motor3_IN2
+        gpio clear $Motor3_Disable
+
+fi
+
+
+if [ $s -eq 40 ]; then
+        echo "Motor4 run direction 0"
+        gpio set $Motor4_Disable
+        sleep 1
+        gpio set $Motor4_IN1
+        gpio clear $Motor4_Disable
+
+fi
+
+if [ $s -eq 41 ]; then
+        echo "Motor4 run direction 1"
+        gpio set $Motor4_Disable
+        sleep 1
+        gpio set $Motor4_IN2
+        gpio clear $Motor4_Disable
+
+fi
+
+if [ $s -eq 50 ]; then
+        echo "All Motor run diriction 0"
+        gpio set $Motor4_Disable
+ 	gpio set $Motor3_Disable
+	gpio set $Motor2_Disable
+	gpio clear $Motor1_Sleep
+        sleep 1
+        gpio set $Motor1_IN1
+	gpio set $Motor2_IN1
+	gpio set $Motor3_IN1
+	gpio set $Motor4_IN1
+	gpio set $Motor1_Sleep
+	gpio clear $Motor2_Disable
+	gpio clear $Motor3_Disable
+        gpio clear $Motor4_Disable
+fi
+
+if [ $s -eq 51 ]; then
+        echo "All Motor run diriction 0"
+        gpio set $Motor4_Disable
+        gpio set $Motor3_Disable
+        gpio set $Motor2_Disable
+        gpio clear $Motor1_Sleep
+        sleep 1
+        gpio set $Motor1_IN2
+        gpio set $Motor2_IN2
+        gpio set $Motor3_IN2
+        gpio set $Motor4_IN2
+        gpio set $Motor1_Sleep
+        gpio clear $Motor2_Disable
+        gpio clear $Motor3_Disable
+        gpio clear $Motor4_Disable
+fi
+
+
+
+
+if [ $s -ne 0 ]; then
+	cd /home/debian/robotic_demo
+	./robotic_motor &
+fi
+
+pkill -9 robotic_motor
+pkill -9 robotic_servo
+

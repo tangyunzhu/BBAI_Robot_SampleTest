@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+	echo "---------------------"
+	./status_motor
+	sleep 1
+done

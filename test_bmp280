@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "------------------------BMP280-------------------------"
+cd /sys/bus/iio/devices/iio:device1
+name=$(cat name)
+in_pressure_input=$(cat in_pressure_input)
+in_pressure_oversampling_ratio=$(cat in_pressure_oversampling_ratio)
+in_temp_input=$(cat in_temp_input)
+in_temp_oversampling_ratio=$(cat in_temp_oversampling_ratio)
+echo "pressure_oversampling_ratio,pressure is: " $in_pressure_oversampling_ratio, $in_pressure_input
+echo "temp_oversampling_ratio,temp is: " $in_temp_oversampling_ratio, $in_temp_input
+echo ""
+echo ""

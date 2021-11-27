@@ -1,0 +1,27 @@
+#!/bin/bash
+
+s=$(gpio input 419)
+s=$(gpio input 418)
+s=$(gpio input 343)
+s=$(gpio input 344)
+s=$(gpio input 353)
+gpio set 313	#OE1
+gpio set 312	#OE2
+
+CAP1=$(gpio input 275)  #CAP1
+CAP2=$(gpio input 277)	#CAP2
+CAP3=$(gpio input 278)	#CAP3
+CAP4=$(gpio input 361)	#CAP4
+
+echo $CAP1,$CAP2,$CAP3,$CAP4
+
+
+gpio clear 313    #OE1
+gpio clear 312    #OE2
+
+CAP1=$(gpio input 275)  #CAP1
+CAP2=$(gpio input 277)  #CAP2
+CAP3=$(gpio input 278)  #CAP3
+CAP4=$(gpio input 361)  #CAP4
+
+echo $CAP1,$CAP2,$CAP3,$CAP4

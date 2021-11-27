@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+	./motor 10
+	sleep 2
+	./motor 0
+	sleep 1
+	./motor 11
+	sleep 2
+	./motor 0
+	sleep 1
+done

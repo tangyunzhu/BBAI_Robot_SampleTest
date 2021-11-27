@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "------------------------6DOF-------------------------"
+cd /sys/bus/iio/devices/iio:device2
+echo "device is: " $(cat name)
+x=$(cat in_anglvel_x_raw);y=$(cat in_anglvel_y_raw); z=$(cat in_anglvel_z_raw)
+echo "X,Y,Z=" $x,$y,$z
+echo ""
+cd /sys/bus/iio/devices/iio:device3
+echo "device is: " $(cat name)
+x=$(cat in_accel_x_raw);y=$(cat in_accel_y_raw); z=$(cat in_accel_z_raw)
+echo "X,Y,Z=" $x,$y,$z
+echo ""

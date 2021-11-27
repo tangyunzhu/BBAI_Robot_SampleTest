@@ -1,0 +1,9 @@
+#!/bin/bash
+cur_path=$(pwd)
+export PATH=$cur_path:$PATH;
+echo $PATH
+gpio clear 374
+#gpio set 306
+sleep 0.5
+cd rplidar/sdk/output/Linux/Release
+./ultra_simple /dev/ttyS0

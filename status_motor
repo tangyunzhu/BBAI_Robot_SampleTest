@@ -1,0 +1,47 @@
+#!/bin/bash
+adc0_dir=/sys/bus/iio/devices/iio:device4
+adc1_dir=/sys/bus/iio/devices/iio:device5
+
+# (K25) MCU_ADC0_AIN0 Battery_Voltage
+# (K26) MCU_ADC0_AIN1 Motor1_Curren
+# (K28) MCU_ADC0_AIN2 Motor4_IPROPI
+# (K24) MCU_ADC0_AIN4 Motor2_IPROPI
+# (K29) MCU_ADC0_AIN6 Motor3_IPROPI
+#
+#(N23) MCU_ADC1_AIN0
+Motor1_FAULT=333
+Motor1_OC=315
+Motor3_FAULT=363
+Motor4_FAULT=317
+Motor2_FAULT=358
+
+function adc_read() {
+	cd $adc0_dir
+	r0=$(cat in_voltage0_raw)
+	r1=$(cat in_voltage1_raw)
+	r2=$(cat in_voltage2_raw)
+        r4=$(cat in_voltage4_raw)
+        r6=$(cat in_voltage6_raw)
+
+
+	Vin0=$(( r0 * 1800 / 4096 ))
+	Vin1=$(( r1 * 1800 / 4096 ))
+        Vin2=$(( r2 * 1800 / 4096 ))
+	Vin4=$(( r4 * 1800 / 4096 ))
+        Vin6=$(( r6 * 1800 / 4096 ))
+
+
+	echo "Battery: " $r0, $Vin0 mv
+	echo "M1 Curr: " $r1, $Vin1 mv
+	echo "M2 IPRO: " $r4, $Vin4 mv
+	echo "M3 IPRO: " $r6, $Vin6 mv
+	echo "M4 IPRO: " $r2, $Vin2 mv
+	echo "M1 OC  : " $(gpio input $Motor1_OC)
+	echo "M1 FAUL: " $(gpio input $Motor1_FAULT)
+	echo "M2 FAUL: " $(gpio input $Motor2_FAULT)
+        echo "M3 FAUL: " $(gpio input $Motor3_FAULT)
+        echo "M4 FAUL: " $(gpio input $Motor4_FAULT)
+}
+
+
+adc_read
