@@ -1,0 +1,12 @@
+[Unit]
+Description=BeagleBone x15 factory test auto start Service
+After=local-fs.target
+
+[Service]
+User=root
+Type=oneshot
+ExecStart=/bin/bash /usr/bin/car
+
+[Install]
+WantedBy=multi-user.target
+

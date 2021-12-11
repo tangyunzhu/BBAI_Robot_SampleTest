@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /home/debian/BBAI_Robot_SampleTest
+./motor1_aging
+exit 0
+
